@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{{name}}
+{{loc}}
+{{ph}}
+<br>
+<h1>
+{% if result=='Black' %}
+	Paddy<img src="{{url_for('static',filename='main-image.jpg')}}">
+{%elif result=='Sandy'%}
+	Rice
+{% endif %}
+</h1>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title> Login </title>
+   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+   <cript src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+<style>
+.back-btn{
+  background-image:url({{url_for('static',filename='back-button.jpg')}};
+  background-size: 40px;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 12px 20px;
+  border: solid;
+  margin-top: 4px;
+  margin-left: 10px;
+  cursor: pointer;
+  width: 10px;
+  opacity: 0.9;
+  display: relative;
+}
+
+.next-btn{
+  background-image:url({{url_for('static',filename='go-next.png')}};
+  background-size: 40px;
+  background-repeat: no-repeat;
+  color: white;
+  display: relative;
+  padding: 12px 20px;
+  border: solid;
+  margin-top: 0px;
+  margin-left: 1200px;
+  cursor: pointer;
+  width: 10px;
+  opacity: 0.9;
+}
+</style>
+
+</head>
+    <body>
+    <div class="login-box">
+    <img src="{{url_for('static',filename='avatar.png')}}" class="avatar">
+        <h1>Login Here</h1>
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Enter Username" id="username">
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password" id="password">
+            <input type="submit" name="submit" value="Login" onclick="login();">
+            <a href="#">Forget Password</a>    
+
+        
+        
+        </div>
+
+        <form>
+          <input class ="back-btn" type="button"  onclick="history.back()">
+  
+          <input class ="next-btn" type="button"  onclick="window.history.forward()">
+        </form>
+    
+    </body>
+<script type="text/javascript">
+	 var config = {
+    apiKey: "AIzaSyB3DP2M0XmHbjJT06euskaMu5HMy6Or70o",
+    authDomain: "agrotec-advisory-5d2b7.firebaseapp.com",
+    databaseURL: "https://agrotec-advisory-5d2b7.firebaseio.com",
+    projectId: "agrotec-advisory-5d2b7",
+    storageBucket: "agrotec-advisory-5d2b7.appspot.com",
+    messagingSenderId: "659109823432"
+  };
+  firebase.initializeApp(config);
+ function login() 
+ {
+ 	var email=document.getElementById('username').value;
+ 	var password=document.getElementById('password').value;
+ 	firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
+ 		
+ 		window.location.href="/form";
+ 	}).catch(function(error) {
+  		alert("Invalid login");
+  		//var errorCode = error.code;
+  		//var errorMessage = error.message;
+	});
+ }
+</script>
+</html>

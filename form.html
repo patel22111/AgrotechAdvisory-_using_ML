@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+
+
+<style>
+body, html {
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+*{
+  box-sizing: border-box;
+}
+
+
+.main {
+  position: relative;
+  background-color:  #0e4151;
+  height: auto;
+  width: auto;
+  /* Center and scale the image nicely */
+  text-align:center;
+}
+
+/* Add styles to the form container */
+.container {
+  position: relative;
+  text-align: center;
+  height: 100%;
+  width: 400px;
+  margin-left: 400px;
+  margin-bottom: 20px
+  color:black;
+  opacity:0.9;
+}
+
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  border-radius:10px;
+  width: 100%;
+  padding: 15px;
+  margin: 0 0 22px 0;
+  border: none;
+  background: #efefef;
+  opacity:0.9;
+     
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ffcccc;
+
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #000;
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 50px;
+  border: 5px groove #123456;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+
+.btn:hover {
+  opacity: 0.5;
+}
+
+.back-btn{
+  background-image:url({{url_for('static',filename='back-button.jpg')}};
+  background-size: 40px;
+  background-repeat: no-repeat;
+  color: white;
+  padding: 12px 20px;
+  border: solid;
+  margin-top: 4px;
+  margin-left:0px;
+  cursor: pointer;
+  width: 10px;
+  opacity: 0.9;
+  display: relative;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="main">
+  <form>
+          <input class ="back-btn" type="button"  onclick="history.back()">
+  </form>       
+  <form  class="container" action="/result" id="myform" method="POST">
+  <h1><b>WELCOME</b><br><br></h1>  
+	<h2>soil details</h2><br>
+    
+    <label for="name"><b>Name</b></label>
+    <input  name ="name" type="text" placeholder="Enter your name" class="data"><br>
+
+    <label for="name"><b>Location</b></label>
+    <input type="text" placeholder="Enter your location"name="loc" class="data"><br>
+
+    <label for="name"><b>PH</b></label><br>
+    <input type="number" placeholder="Enter PH value" name="ph" class="data">
+
+    <label for="name"><b>EC</b></label><br>
+    <input type="number" placeholder="Enter Electrical conductance value "name="ec" class="data">
+
+     <label for="name"><b>OC</b></label><br>
+    <input type="number" placeholder="Enter Oxygen content value" name="oc" class="data">
+
+     <label for="name"><b>Phosphorus</b></label><br>
+    <input type="number" placeholder="Enter Phosphorus content" name="av_p" class="data">
+  
+     <label for="name"><b>Potassium</b></label><br>
+    <input type="number" placeholder="Enter Potassium content" name="av_k" class="data">
+
+     <label for="name"><b>Sulphur</b></label><br>
+    <input type="number" placeholder="Enter sulphur content" name="av_s" class="data">
+
+    <label for="name"><b>Zinc</b></label><br>
+    <input type="number" placeholder="Enter Zinc content" name="av_zn" class="data">
+    
+    <label for="name"><b>Boron</b></label><br>
+    <input type="number" placeholder="Enter Boron content" name="av_b" class="data">
+   
+    <label for="name"><b>Iron</b></label><br>
+    <input type="number" placeholder="Enter Iron content" name="av_fe" class="data">
+
+    <label for="name"><b>Copper</b></label><br>
+    <input type="number" placeholder="Enter Copper content" name="av_cu" class="data">
+    
+    <label for="name"><b>Manganese</b></label><br>
+    <input type="number" placeholder="Enter manganese content" name="av_mn" class="data">
+    
+    <input class="btn" type="SUBMIT" name="submit">
+    <!--button onclick="save()" class="btn">SUBMIT</button-->
+  </form>
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+  var config = {
+    apiKey: "AIzaSyB3DP2M0XmHbjJT06euskaMu5HMy6Or70o",
+    authDomain: "agrotec-advisory-5d2b7.firebaseapp.com",
+    databaseURL: "https://agrotec-advisory-5d2b7.firebaseio.com",
+    projectId: "agrotec-advisory-5d2b7",
+    storageBucket: "agrotec-advisory-5d2b7.appspot.com",
+    messagingSenderId: "659109823432"
+  };
+  firebase.initializeApp(config);
+  var database = firebase.database();
+  document.getElementById('myform').addEventListener('submit',save);
+  function save() 
+  {
+    var datas=document.getElementsByClassName('data');
+    var ref=database.ref('/soildata');
+    ref.push({
+      'Name':datas[0].value,
+      'Location':datas[1].value,
+      'Ph':datas[2].value,
+      'EC':datas[3].value,
+      'OC':datas[4].value,
+      'P':datas[5].value,
+      'K':datas[6].value,
+      'S':datas[7].value,
+      'Zn':datas[8].value,
+      'B':datas[9].value,
+      'Fe':datas[10].value,
+      'Cu':datas[11].value,
+      'Mn':datas[12].value,
+    });
+  }
+  
+</script>
+</html>
